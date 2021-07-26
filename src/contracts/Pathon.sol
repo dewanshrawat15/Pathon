@@ -62,7 +62,7 @@ contract Pathon {
     address(_author).transfer(msg.value);
     _post.tipAmount = _post.tipAmount + msg.value;
     posts[_id] = _post;
-    emit PostCreated(_post.id, _post.title, _post.imageHash, _post.tagline, _post.description, _post.projecturl, _post.tipAmount, _author);
+    emit PostCreated(_post.id, _post.title, _post.imageHash, _post.tagline, _post.description, _post.projectUrl, _post.tipAmount, _author);
   }
 
   // Tip projects

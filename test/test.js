@@ -79,6 +79,46 @@ contract('Pathon', ([deployer, author, tipper]) => {
 
     it('allows people to fund projects', async () => {
       // beginning to draft this up
+      let oldAuthorBalance;
+      let tipAmount = 3;
+      oldAuthorBalance = await web3.eth.getBalance(author);
+      oldAuthorBalance = new web3.utils.BN(oldAuthorBalance);
+
+      result = await pathon.tipPostOwner(
+        postCount,
+        {
+          from: tipper,
+          value: web3.utils.toWei(tipAmount.toString(), 'Ether')
+        }
+      );
+      const event = result.logs[0].args;
+      assert.equal(event.id.toNumber(), postCount.toNumber(), 'ID is correct');
+      assert.equal(event.imageHash, hash, 'hash is correct');
+
+      assert.equal(event.tagline, 'A new blockchain based crowd fund raising platform', 'tagline is correct');
+      assert.equal(event.description, 'This project was built for everyone to be able to use ETH to sponsor the growth and BUIDL of projects', 'description is correct');
+      assert.equal(event.tipAmount, '3000000000000000000', 'tip is correct');
+      assert.equal(event.projectUrl, 'http://pathon.web.app', 'project url is correct');
+      assert.equal(event.author, author, 'author is correct');
+
+      let newAuthorBalance;
+      newAuthorBalance = await web3.eth.getBalance(author);
+      newAuthorBalance = new web3.utils.BN(newAuthorBalance);
+
+      let tipPostOwner = web3.utils.toWei(tipAmount.toString(), 'Ether');
+      tipPostOwner = new web3.utils.BN(tipPostOwner);
+
+      const expectedBalance = oldAuthorBalance.add(tipPostOwner);
+      assert.equal(newAuthorBalance.toString(), expectedBalance.toString());
+      const fictionalPostID = 32;
+
+      await pathon.tipPostOwner(
+        fictionalPostID,
+        {
+          from: tipper,
+          value: web3.utils.toWei('5', 'Ether')
+        }
+      ).should.be.rejected;
     });
   });
 
