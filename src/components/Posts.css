@@ -1,0 +1,19 @@
+.home{
+    padding: 120px 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+.project-title{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.project-tagline{
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.project-description{
+    font-size: 12px;
+    font-weight: 300;
+}

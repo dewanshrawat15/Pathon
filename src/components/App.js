@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
-import Identicon from 'identicon.js';
+
 import './App.css';
 import Pathon from '../abis/Pathon.json'
 import Navbar from './Navbar'
@@ -86,12 +86,13 @@ class App extends Component {
     });
   }
 
-  tipProjectOwner(id, tipAmount) {
+  async tipProjectOwner(id, tipAmount) {
     this.setState({ loading: true });
-    this.state.pathon.methods.tipPostOwner(id).send({
+    await this.state.pathon.methods.tipPostOwner(id).send({
       from: this.state.account,
       value: tipAmount
     });
+    window.location.reload();
   }
 
   captureFile = (event) => {

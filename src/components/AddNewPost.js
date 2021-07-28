@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./AddNewPost.css";
+
 class AddNewPost extends React.Component{
 
     render(){

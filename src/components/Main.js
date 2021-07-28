@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 import "./main.css";
@@ -22,13 +21,13 @@ class Main extends Component {
           <Route path="/new">
             <AddNewPost
               captureFile={this.props.captureFile}
-              tipProjectOwner={this.props.tipProjectOwner}
               uploadPost={this.props.uploadPost}
             />
           </Route>
           <Route path="/">
             <PostViewer
               posts={this.props.posts}
+              tipProjectOwner={this.props.tipProjectOwner}
             />
           </Route>
         </Switch>

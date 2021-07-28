@@ -1,0 +1,9 @@
+.navbar-inverse{
+    padding-top: 15px!important;
+    padding-bottom: 15px!important;
+    border-radius: 0!important;
+    font-family: "Montserrat", sans-serif!important;
+    position: fixed;
+    width: 100vw!important;
+    z-index: 2;
+}
