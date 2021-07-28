@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
-import Identicon from 'identicon.js';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+import "./main.css";
+
+
+import AddNewPost from "./AddNewPost";
+import PostViewer from "./Posts";
 
 class Main extends Component {
 
   render() {
     return (
-      <div className="container-fluid mt-5">
-        <div className="row">
-          <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '500px' }}>
-            <div className="content mr-auto ml-auto">
-              <p>&nbsp;</p>
-              <h1 className="d-4">Edit this file in App.js!</h1>
-                
-                {/* Code ... */}
-
-              <p>&nbsp;</p>
-                
-                {/* Code ... */}
-
-            </div>
-          </main>
-        </div>
-      </div>
+      <Router>
+        <Switch>
+          <Route path="/new">
+            <AddNewPost
+              captureFile={this.props.captureFile}
+              tipProjectOwner={this.props.tipProjectOwner}
+              uploadPost={this.props.uploadPost}
+            />
+          </Route>
+          <Route path="/">
+            <PostViewer
+              posts={this.props.posts}
+            />
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }
