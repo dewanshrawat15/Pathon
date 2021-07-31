@@ -51,11 +51,10 @@ class ProjectCard extends React.Component{
                                 <button
                                     className="btn btn-link btn-sm float-right pt-0"
                                     name={imageHash.id}
-                                    onClick={async (event) => {
+                                    onClick={(event) => {
                                         let sponsTipAmount = window.web3.utils.toWei(this.sponsTipAmount.value.toString(), 'Ether');
                                         // console.log(postIndex, tipAmount);
-                                        await this.props.tipProjectOwner(postIndex, sponsTipAmount);
-                                        window.location.reload();
+                                        this.props.tipProjectOwner(postIndex, sponsTipAmount);
                                     }}
                                 >Sponsor project growth</button>
                             </div>
